@@ -15,9 +15,9 @@
         while ($carmakes = $carmakes->fetch_assoc()) {
     ?>
     <tr>
-      <td><?php echo htmlspecialchars($carmake_row['make_id']); ?></td>
-      <td><?php echo htmlspecialchars($carmake_row['make_name']); ?></td>
-      <td><?php echo htmlspecialchars($carmake_row['make_country']); ?></td>
+      <td><?php echo htmlspecialchars($carmakes_row['make_id']); ?></td>
+      <td><?php echo htmlspecialchars($carmakes_row['make_name']); ?></td>
+      <td><?php echo htmlspecialchars($carmakes_row['make_country']); ?></td>
     </tr>
     <?php
         }
