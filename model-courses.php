@@ -4,7 +4,7 @@ function selectCourses() {
         $conn = get_db_connection();
         
         // Correct the SQL query by removing single quotes around the table name
-        $stmt = $conn->prepare("SELECT course_id, course_name, course_number FROM course");
+        $stmt = $conn->prepare("SELECT make_id, make_name, make_country FROM car_make");
         
         // Execute the statement
         $stmt->execute();
