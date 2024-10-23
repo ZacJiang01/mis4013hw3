@@ -3,38 +3,36 @@
   <table class="table">
    <thead>
      <tr>
-    <th>ID</th>
-     <th>Name</th>
-     <th>Number</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Country</th> <!-- Changed from Number to Country -->
      </tr>
-</thead>
-    <tbody>
-      <?php
-while ($car_make = $car_make->fetch_assoc()) {
-  ?>
-  <tr>
-    <td><?php echo $car_make['make_id']; ?></td>
-     <td><?php echo $car_make['make_name']; ?></td>
-     <td><?php echo $car_make['make_country']; ?></td>
-  </tr>
-  <?php
-}
-?>
-    </tbody>
+  </thead>
+  <tbody>
+    <?php
+    // Assuming $car_makes is the result set
+    while ($car_make_row = $car_makes->fetch_assoc()) { // Changed variable name to avoid conflict
+    ?>
+    <tr>
+      <td><?php echo $car_make_row['make_id']; ?></td>
+      <td><?php echo $car_make_row['make_name']; ?></td>
+      <td><?php echo $car_make_row['make_country']; ?></td>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
   </table>
 </div>
 
 <div id="addEditPopup" class="popup" style="display:none;">
     <form action="add_edit_car.php" method="POST">
         <h2>Add/Edit Car Make</h2>
-        <label for="make">Make:</label>
+        <label for="make">Make Name:</label>
         <input type="text" name="make_name" value="" required><br>
         <label for="country">Country:</label>
         <input type="text" name="make_country" value="" required><br>
-        <label for="model">Model:</label>
-        <input type="text" name="model_name" value="" required><br>
-        <label for="year">Year:</label>
-        <input type="number" name="model_year" value="" required><br>
+        <!-- Removed unnecessary fields for car models -->
         <button type="submit">Submit</button>
     </form>
 </div>
