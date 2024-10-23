@@ -1,5 +1,5 @@
 <?php
-function selectInstructors() {
+function selectModels() {
     try {
         $conn = get_db_connection();
         
