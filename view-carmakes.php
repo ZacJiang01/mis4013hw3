@@ -11,7 +11,7 @@
    <tbody>
     <?php
     // Check if $car_makes contains valid results
-    if ($car_makes) {
+    if ($car_make) {
         while ($carmake_row = $car_makes->fetch_assoc()) {
     ?>
     <tr>
