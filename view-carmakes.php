@@ -5,23 +5,28 @@
      <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Country</th> <!-- Changed from Number to Country -->
+      <th>Country</th>
      </tr>
-  </thead>
-  <tbody>
+   </thead>
+   <tbody>
     <?php
-    // Assuming $car_makes is the result set
-    while ($carmake_row = $carmakes->fetch_assoc()) { // Changed variable name to avoid conflict
+    // Check if $car_makes contains valid results
+    if ($car_makes) {
+        while ($carmake_row = $car_makes->fetch_assoc()) {
     ?>
     <tr>
-      <td><?php echo $carmake_row['make_id']; ?></td>
-      <td><?php echo $carmake_row['make_name']; ?></td>
-      <td><?php echo $carmake_row['make_country']; ?></td>
+      <td><?php echo htmlspecialchars($carmake_row['make_id']); ?></td>
+      <td><?php echo htmlspecialchars($carmake_row['make_name']); ?></td>
+      <td><?php echo htmlspecialchars($carmake_row['make_country']); ?></td>
     </tr>
     <?php
+        }
+    } else {
+        // Handle the case when no car makes are found or the query failed
+        echo "<tr><td colspan='3'>No car makes found.</td></tr>";
     }
     ?>
-  </tbody>
+   </tbody>
   </table>
 </div>
 
@@ -32,7 +37,6 @@
         <input type="text" name="make_name" value="" required><br>
         <label for="country">Country:</label>
         <input type="text" name="make_country" value="" required><br>
-        <!-- Removed unnecessary fields for car models -->
         <button type="submit">Submit</button>
     </form>
 </div>
