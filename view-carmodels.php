@@ -10,7 +10,7 @@
    </thead>
    <tbody>
     <?php
-    // Check if $car_models is valid before trying to fetch results
+    // Assuming $carmodels is the result set from the selectModels function
     if ($carmodels) {
         while ($carmodel = $carmodels->fetch_assoc()) {
     ?>
