@@ -46,6 +46,6 @@ if (isset($_GET["delete_id"])) {
 
     $stmt->close();
     $conn->close();
-    header("Location: instructors.php");
+    header("Location: carmodels.php");
 }
 ?>
