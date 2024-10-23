@@ -12,7 +12,7 @@
     <?php
     // Check if $car_makes is valid before trying to fetch results
     if ($carmakes) {
-        while ($carmake_row = $car_makes->fetch_assoc()) {
+        while ($carmakes = $carmakes->fetch_assoc()) {
     ?>
     <tr>
       <td><?php echo htmlspecialchars($carmake_row['make_id']); ?></td>
