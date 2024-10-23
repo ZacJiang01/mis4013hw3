@@ -25,6 +25,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="carmakes.php">Car Makes</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="motorcyclemakes">Motorcycle Makes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="motorcyclemodels">Motorcycle Models</a>
+              </li>
 
             </ul>
           </div>
