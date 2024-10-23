@@ -1,5 +1,5 @@
 <?php
-function selectCourses() {
+function selectMakes() {
     try {
         $conn = get_db_connection();
         
