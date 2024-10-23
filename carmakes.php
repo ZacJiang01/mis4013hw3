@@ -31,6 +31,6 @@ if (isset($_GET['delete_make'])) {
 
 $makes = selectMakes();  // Fetch all car makes
 
-include "carmakes.php";  // Show the view for displaying car makes
+include "view-carmakes.php";  // Show the view for displaying car makes
 include "view-footer.php";
 ?>
