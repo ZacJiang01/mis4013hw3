@@ -11,12 +11,12 @@
   <tbody>
     <?php
     // Assuming $car_makes is the result set
-    while ($car_make_row = $car_makes->fetch_assoc()) { // Changed variable name to avoid conflict
+    while ($carmake_row = $carmakes->fetch_assoc()) { // Changed variable name to avoid conflict
     ?>
     <tr>
-      <td><?php echo $car_make_row['make_id']; ?></td>
-      <td><?php echo $car_make_row['make_name']; ?></td>
-      <td><?php echo $car_make_row['make_country']; ?></td>
+      <td><?php echo $carmake_row['make_id']; ?></td>
+      <td><?php echo $carmake_row['make_name']; ?></td>
+      <td><?php echo $carmake_row['make_country']; ?></td>
     </tr>
     <?php
     }
