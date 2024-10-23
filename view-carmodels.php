@@ -40,16 +40,7 @@
 
         <label for="make">Car Make:</label>
         <select name="make_id" required>
-            <?php
-            // Check if $car_makes is valid before populating the dropdown
-            if ($carmakes) {
-                while ($carmakes = $carmakes->fetch_assoc()) {
-                    echo "<option value='" . htmlspecialchars($car_make['make_id']) . "'>" . htmlspecialchars($car_make['make_name']) . "</option>";
-                }
-            } else {
-                echo "<option value=''>No car makes available</option>";
-            }
-            ?>
+            
         </select><br>
 
         <button type="submit">Submit</button>
