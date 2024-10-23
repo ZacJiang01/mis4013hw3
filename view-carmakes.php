@@ -5,25 +5,25 @@
      <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Country</th> <!-- Changed from Number to Country -->
+      <th>Country</th>
      </tr>
    </thead>
    <tbody>
     <?php
-    // Check if $car_makes is valid before trying to fetch results
-    if ($carmakes) {
-        while ($carmakes = $carmakes->fetch_assoc()) {
+    // Check if $carmakes is a valid result set before fetching rows
+    if ($carmakes && $carmakes->num_rows > 0) {
+        while ($carmake_row = $carmakes->fetch_assoc()) {
     ?>
     <tr>
-      <td><?php echo htmlspecialchars($carmake['make_id']); ?></td>
-      <td><?php echo htmlspecialchars($carmake['make_name']); ?></td>
-      <td><?php echo htmlspecialchars($carmake['make_country']); ?></td>
+      <td><?php echo htmlspecialchars($carmake_row['make_id']); ?></td>
+      <td><?php echo htmlspecialchars($carmake_row['make_name']); ?></td>
+      <td><?php echo htmlspecialchars($carmake_row['make_country']); ?></td>
     </tr>
     <?php
         }
     } else {
-        // Handle the case when no car makes are found or the query failed
-        echo "<tr><td colspan='3'>No car makes found.</td></tr>";
+        // If no car makes found or query failed
+        echo "<tr><td colspan='3'>No car makes found or query failed.</td></tr>";
     }
     ?>
    </tbody>
