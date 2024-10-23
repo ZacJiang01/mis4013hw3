@@ -5,13 +5,13 @@
      <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Country</th>
+      <th>Country</th> <!-- Changed from Number to Country -->
      </tr>
    </thead>
    <tbody>
     <?php
-    // Check if $car_makes contains valid results
-    if ($car_make) {
+    // Check if $car_makes is valid before trying to fetch results
+    if ($car_makes) {
         while ($carmake_row = $car_makes->fetch_assoc()) {
     ?>
     <tr>
