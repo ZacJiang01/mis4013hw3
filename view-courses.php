@@ -10,12 +10,12 @@
 </thead>
     <tbody>
       <?php
-while ($course = $courses->fetch_assoc()) {
+while ($car_make = $car_make->fetch_assoc()) {
   ?>
   <tr>
-    <td><?php echo $instructor['make_id']; ?></td>
-     <td><?php echo $instructor['make_name']; ?></td>
-     <td><?php echo $instructor['make_country']; ?></td>
+    <td><?php echo $car_make['make_id']; ?></td>
+     <td><?php echo $car_make['make_name']; ?></td>
+     <td><?php echo $car_make['make_country']; ?></td>
   </tr>
   <?php
 }
