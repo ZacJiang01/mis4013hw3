@@ -1,7 +1,7 @@
 
 <?php 
 require_once("util-db.php");
-require_once("model-courses.php");
+require_once("selectmakes.php");
 
 $pageTitle = "Car Makes";
 include "view-header.php";
