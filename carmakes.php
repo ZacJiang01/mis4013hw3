@@ -4,7 +4,7 @@ require_once("selectmakes.php");
 
 $pageTitle = "Car Makes";
 include "view-header.php";
-$carmakess = selectMakes();
+$carmakes = selectMakes();
 
 include "view-carmakes.php";
 include "view-footer.php";
