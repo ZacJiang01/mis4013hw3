@@ -11,12 +11,12 @@
   <tbody>
     <?php
     // Assuming $car_models is the result set from the selectModels function
-    while ($car_model = $car_models->fetch_assoc()) {
+    while ($carmodel = $carmodels->fetch_assoc()) {
     ?>
     <tr>
-      <td><?php echo $car_model['model_id']; ?></td>
-      <td><?php echo $car_model['model_name']; ?></td>
-      <td><?php echo $car_model['model_year']; ?></td>
+      <td><?php echo $carmodel['model_id']; ?></td>
+      <td><?php echo $carmodel['model_name']; ?></td>
+      <td><?php echo $carmodel['model_year']; ?></td>
     </tr>
     <?php
     }
