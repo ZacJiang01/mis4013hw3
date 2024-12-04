@@ -8,7 +8,7 @@
               if ($currentManufacturer !== null): ?>
                   </tbody></table>
               <?php endif; ?>
-              <h2><?= htmlspecialchars($row['ManufacturerName']); ?></h2>
+              <h2><?= htmlspecialchars($row['ManufacturerName'] ?: 'No Manufacturer'); ?></h2>
               <table class="table">
                   <thead>
                       <tr>
@@ -37,7 +37,7 @@
           <?php endif;
       endwhile;
   else:
-      echo "<p>No manufacturers found.</p>";
+      echo "<p>No manufacturers or cars found.</p>";
   endif;
   ?>
   </tbody></table>
