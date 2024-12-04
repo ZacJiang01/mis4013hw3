@@ -24,7 +24,7 @@ function selectManufacturer() {
         if (isset($conn)) {
             $conn->close();
         }
-        error_log("Error in selectManufacturerWithCars(): " . $e->getMessage());
+        error_log("Error in selectManufacturer(): " . $e->getMessage());
         throw $e;
     }
 }
