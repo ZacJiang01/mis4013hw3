@@ -19,13 +19,11 @@
         <form method = "post" action =>"">
           <div class="mb-3">
             <label for="cCarModel" class="form-label">Car Model</label>
-            <input type="text" class="form-control" id="cCarModel" name = "cCarModel">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-      
-          </div>
+            <input type="text" class="form-control" id= "cCarModel" name = "cCarModel">
+           </div>
           <div class="mb-3">
-            <input type="cColor" class="form-label" id="Car Color">
-            <label class="text" for="form-control" id = "cColor" name = "cColor>
+            <label for ="cColor" class="form-label">Car Color</label>
+            <label types="text" class="form-control" id = "cColor" name = "cColor">
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
