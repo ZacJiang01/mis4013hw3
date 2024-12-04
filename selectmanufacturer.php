@@ -8,7 +8,7 @@ function selectManufacturer() {
         // Query to fetch only car details
         $query = "
             SELECT ManufacturerID, ManufacturerName
-            FROM Car
+            FROM Manufacturer
             ORDER BY ManufacturerName ASC
         ";
         $result = $conn->query($query);
