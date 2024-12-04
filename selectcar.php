@@ -1,12 +1,12 @@
 <?php
 require_once("util-db.php");
 
-function selectModels() {
+function selectCars() {
     try {
         $conn = get_db_connection();
         
-        // Prepare the SQL query to get car models
-        $stmt = $conn->prepare("SELECT model_id, model_name, model_year FROM car_model");
+        // Prepare the SQL query to get car details
+        $stmt = $conn->prepare("SELECT CarID, CarModel, Color, Price FROM Car");
         
         // Execute the statement and check for errors
         if (!$stmt->execute()) {
@@ -29,7 +29,7 @@ function selectModels() {
         }
         
         // Log the error for debugging
-        error_log("Error in selectModels(): " . $e->getMessage());
+        error_log("Error in selectCars(): " . $e->getMessage());
         
         // Rethrow the exception to be handled elsewhere
         throw $e;
