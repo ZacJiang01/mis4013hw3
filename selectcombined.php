@@ -15,13 +15,9 @@ function selectCombinedData() {
         ";
         $result = $conn->query($query);
 
-        // Debugging output
+        // Check if query execution was successful
         if (!$result) {
-            die("Query failed: " . $conn->error);
-        }
-
-        if ($result->num_rows === 0) {
-            die("No manufacturers or cars found in the database.");
+            throw new Exception("Query failed: " . $conn->error);
         }
 
         return $result;
