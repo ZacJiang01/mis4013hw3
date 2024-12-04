@@ -1,25 +1,20 @@
 <?php
 require_once("util-db.php");
 
-function selectManufacturer() {
+function selectCars() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch manufacturer details
+        // Query to fetch only car details
         $query = "
             SELECT ManufacturerID, ManufacturerName
-            FROM Manufacturer
+            FROM Car
             ORDER BY ManufacturerName ASC
         ";
         $result = $conn->query($query);
 
-        // Debugging output
         if (!$result) {
-            die("Query failed: " . $conn->error); // Display query error
-        }
-
-        if ($result->num_rows === 0) {
-            die("No manufacturers found in the database."); // Display empty result message
+            throw new Exception("Query execution failed: " . $conn->error);
         }
 
         return $result;
@@ -27,7 +22,7 @@ function selectManufacturer() {
         if (isset($conn)) {
             $conn->close();
         }
-        error_log("Error in selectManufacturer(): " . $e->getMessage());
+        error_log("Error in selectCars(): " . $e->getMessage());
         throw $e;
     }
 }
