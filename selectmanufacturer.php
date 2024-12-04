@@ -1,7 +1,7 @@
 <?php
 require_once("util-db.php");
 
-function selectManufacturerWithCars() {
+function selectManufacturer() {
     try {
         $conn = get_db_connection();
 
