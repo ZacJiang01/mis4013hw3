@@ -26,9 +26,7 @@
                 <a class="nav-link" href="carmanufacturer.php">Manufacturers</a>
               </li>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="view-combined.php">Manufacturer with Cars</a>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="colors.php">Colors</a>
               </li>
