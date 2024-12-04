@@ -6,6 +6,6 @@ $pageTitle = "Cars";
 include "view-header.php";
 $Cars = selectCars();
 
-include "view-car.php";
+include "view-cars.php";
 include "view-footer.php";
 ?>
