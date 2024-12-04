@@ -1,38 +1,41 @@
 <?php
 require_once("util-db.php");
 
-function selectManufacturer() {
-    try {
-        $conn = get_db_connection();
-        
-        // Prepare and execute the SQL query to fetch manufacturers
-        $stmt = $conn->prepare("SELECT ManufacturerID, ManufacturerName FROM Manufacturer");
-        
-        // Execute the statement
-        if (!$stmt->execute()) {
-            throw new Exception("Query execution failed: " . $stmt->error);
-        }
-        
-        // Get the result set from the query
-        $result = $stmt->get_result();
-        
-        // Close the statement and connection after use
-        $stmt->close();
-        $conn->close();
-        
-        // Return the result set
-        return $result;
-    } catch (Exception $e) {
-        // Close the connection in case of an error
-        if (isset($conn)) {
-            $conn->close();
-        }
-        
-        // Log the error for debugging
-        error_log("Error in selectManufacturer(): " . $e->getMessage());
-        
-        // Rethrow the exception to be handled elsewhere
-        throw $e;
-    }
-}
+$pageTitle = "Manufacturers";
+
+// Fetch manufacturers
+$conn = get_db_connection();
+$query = "SELECT ManufacturerID, ManufacturerName FROM Manufacturer";
+$result = $conn->query($query);
+
+include "view-header.php";
+?>
+<h1>Manufacturers</h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if ($result && $result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+          <tr>
+            <td><?= htmlspecialchars($row['ManufacturerID']); ?></td>
+            <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
+          </tr>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <tr>
+          <td colspan="2">No manufacturers found.</td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
+</div>
+<?php
+$conn->close();
+include "view-footer.php";
 ?>
