@@ -22,7 +22,7 @@ function selectCars() {
         if (isset($conn)) {
             $conn->close();
         }
-        error_log("Error in selectCars(): " . $e->getMessage());
+        error_log("Error in selectManufacturer(): " . $e->getMessage());
         throw $e;
     }
 }
