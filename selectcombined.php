@@ -5,27 +5,23 @@ function selectCombinedData() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch all manufacturers and cars
+        // Query to fetch manufacturers and their cars
         $query = "
             SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
                    Car.CarID, Car.CarModel, Car.Color, Car.Price
             FROM Manufacturer
             LEFT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
-
-            UNION
-
-            SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
-                   Car.CarID, Car.CarModel, Car.Color, Car.Price
-            FROM Car
-            LEFT JOIN Manufacturer ON Manufacturer.ManufacturerID = Car.ManufacturerID
-
-            ORDER BY ManufacturerName ASC, CarID ASC;
+            ORDER BY Manufacturer.ManufacturerName ASC, Car.CarID ASC
         ";
-
         $result = $conn->query($query);
 
+        // Debugging output
         if (!$result) {
-            throw new Exception("Query execution failed: " . $conn->error);
+            die("Query failed: " . $conn->error);
+        }
+
+        if ($result->num_rows === 0) {
+            die("No manufacturers or cars found in the database.");
         }
 
         return $result;
