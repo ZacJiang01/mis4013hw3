@@ -3,9 +3,15 @@ require_once("util-db.php");
 
 $pageTitle = "Car Colors";
 
-// Query to get distinct car colors in alphabetical order
+// Query to get distinct car colors with manufacturers
 $conn = get_db_connection();
-$query = "SELECT DISTINCT Color FROM Car ORDER BY Color ASC";
+$query = "
+    SELECT DISTINCT Car.Color, GROUP_CONCAT(DISTINCT Manufacturer.ManufacturerName SEPARATOR ', ') AS Manufacturers
+    FROM Car
+    JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
+    GROUP BY Car.Color
+    ORDER BY Car.Color ASC
+";
 $result = $conn->query($query);
 
 include "view-header.php";
@@ -16,6 +22,7 @@ include "view-header.php";
     <thead>
       <tr>
         <th>Color</th>
+        <th>Manufacturers</th>
       </tr>
     </thead>
     <tbody>
@@ -23,11 +30,12 @@ include "view-header.php";
         <?php while ($row = $result->fetch_assoc()): ?>
           <tr>
             <td><?= htmlspecialchars($row['Color']); ?></td>
+            <td><?= htmlspecialchars($row['Manufacturers']); ?></td>
           </tr>
         <?php endwhile; ?>
       <?php else: ?>
         <tr>
-          <td>No colors found.</td>
+          <td colspan="2">No colors found.</td>
         </tr>
       <?php endif; ?>
     </tbody>
