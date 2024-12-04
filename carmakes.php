@@ -1,6 +1,6 @@
 <?php 
 require_once("util-db.php");
-require_once("selectmakes.php");
+require_once("selectmanufacturer.php");
 
 $pageTitle = "Car Makes";
 include "view-header.php";
