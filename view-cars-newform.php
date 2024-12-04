@@ -23,7 +23,7 @@
            </div>
           <div class="mb-3">
             <label for ="cColor" class="form-label">Car Color</label>
-            <label types="text" class="form-control" id = "cColor" name = "cColor">
+            <label type="text" class="form-control" id = "cColor" name = "cColor">
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
