@@ -12,21 +12,9 @@
    </thead>
    <tbody>
     <?php
-    require_once("util-db.php");
-
-    // Fetch car data with manufacturers
-    $conn = get_db_connection();
-    $query = "
-        SELECT Car.CarID, Car.CarModel, Car.Color, Car.Price, Manufacturer.ManufacturerName
-        FROM Car
-        JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
-        ORDER BY Car.CarID ASC
-    ";
-    $result = $conn->query($query);
-
-    // Check if the query returned any results
-    if ($result && $result->num_rows > 0) {
-        while ($car_row = $result->fetch_assoc()) {
+    // Check if $Cars is a valid result set before fetching rows
+    if ($Cars && $Cars->num_rows > 0) {
+        while ($car_row = $Cars->fetch_assoc()) {
     ?>
     <tr>
       <td><?php echo htmlspecialchars($car_row['CarID']); ?></td>
@@ -41,9 +29,6 @@
         // If no cars found or query failed
         echo "<tr><td colspan='5'>No cars found or query failed.</td></tr>";
     }
-
-    // Close the database connection
-    $conn->close();
     ?>
    </tbody>
   </table>
