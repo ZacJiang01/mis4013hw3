@@ -23,11 +23,11 @@
            </div>
           <div class="mb-3">
             <label for ="cColor" class="form-label">Car Color</label>
-            <label type="text" class="form-control" id = "cColor" name = "cColor">
+            <input type="text" class="form-control" id = "cColor" name = "cColor">
           </div>
               <div class="mb-3">
             <label for ="cPrice" class="form-label">Car Price</label>
-            <label type="text" class="form-control" id = "cPrice" name = "cPrice">
+            <input type="text" class="form-control" id = "cPrice" name = "cPrice">
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
