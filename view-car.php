@@ -1,4 +1,4 @@
-<h1>Cars</h1>
+<h1>Car Models</h1>
 <div class="table-responsive">
   <table class="table">
    <thead>
@@ -7,28 +7,23 @@
       <th>Model</th>
       <th>Color</th>
       <th>Price</th>
-      <th>Manufacturer</th>
      </tr>
    </thead>
    <tbody>
-    <?php
-    // Assuming $cars is the result set from the selectCars function
-    if ($cars) {
-        while ($car = $cars->fetch_assoc()) {
-    ?>
-    <tr>
-      <td><?php echo htmlspecialchars($car['CarID']); ?></td>
-      <td><?php echo htmlspecialchars($car['CarModel']); ?></td>
-      <td><?php echo htmlspecialchars($car['Color']); ?></td>
-      <td><?php echo htmlspecialchars($car['Price']); ?></td>
-      <td><?php echo htmlspecialchars($car['ManufacturerName']); ?></td>
-    </tr>
-    <?php
-        }
-    } else {
-        echo "<tr><td colspan='5'>No cars found.</td></tr>";
-    }
-    ?>
+    <?php if ($Car): ?>
+        <?php while ($car = $Car->fetch_assoc()): ?>
+            <tr>
+                <td><?= htmlspecialchars($car['CarID']); ?></td>
+                <td><?= htmlspecialchars($car['CarModel']); ?></td>
+                <td><?= htmlspecialchars($car['Color']); ?></td>
+                <td><?= htmlspecialchars($car['Price']); ?></td>
+            </tr>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="4">No cars found.</td>
+        </tr>
+    <?php endif; ?>
    </tbody>
   </table>
 </div>
