@@ -3,14 +3,13 @@ require_once("util-db.php");
 
 $pageTitle = "Car Colors";
 
-// Query to get distinct car colors with manufacturers
+// Query to get cars grouped by color in alphabetical order
 $conn = get_db_connection();
 $query = "
-    SELECT DISTINCT Car.Color, GROUP_CONCAT(DISTINCT Manufacturer.ManufacturerName SEPARATOR ', ') AS Manufacturers
+    SELECT Car.Color, Car.CarModel, Manufacturer.ManufacturerName, Car.Price
     FROM Car
     JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
-    GROUP BY Car.Color
-    ORDER BY Car.Color ASC
+    ORDER BY Car.Color ASC, Car.CarModel ASC
 ";
 $result = $conn->query($query);
 
@@ -18,28 +17,39 @@ include "view-header.php";
 ?>
 <h1>Car Colors</h1>
 <div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Color</th>
-        <th>Manufacturers</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php if ($result && $result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-          <tr>
-            <td><?= htmlspecialchars($row['Color']); ?></td>
-            <td><?= htmlspecialchars($row['Manufacturers']); ?></td>
-          </tr>
-        <?php endwhile; ?>
-      <?php else: ?>
+  <?php if ($result && $result->num_rows > 0): ?>
+    <?php 
+    $currentColor = null; 
+    while ($row = $result->fetch_assoc()): 
+        if ($row['Color'] !== $currentColor): 
+            if ($currentColor !== null): ?>
+              </tbody></table>
+            <?php endif; ?>
+            <h2><?= htmlspecialchars($row['Color']); ?></h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Manufacturer</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+            <?php 
+            $currentColor = $row['Color']; 
+        endif; 
+        ?>
         <tr>
-          <td colspan="2">No colors found.</td>
+          <td><?= htmlspecialchars($row['CarModel']); ?></td>
+          <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
+          <td>$<?= number_format($row['Price'], 2); ?></td>
         </tr>
-      <?php endif; ?>
+    <?php endwhile; ?>
     </tbody>
-  </table>
+    </table>
+  <?php else: ?>
+    <p>No cars found.</p>
+  <?php endif; ?>
 </div>
 <?php
 $conn->close();
