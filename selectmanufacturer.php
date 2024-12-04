@@ -9,13 +9,17 @@ function selectManufacturer() {
         $query = "
             SELECT ManufacturerID, ManufacturerName
             FROM Manufacturer
-            ORDER BY ManufacturerID ASC
+            ORDER BY ManufacturerName ASC
         ";
         $result = $conn->query($query);
 
-        // Check if the query executed successfully
+        // Debugging output
         if (!$result) {
-            throw new Exception("Query execution failed: " . $conn->error);
+            die("Query failed: " . $conn->error); // Display query error
+        }
+
+        if ($result->num_rows === 0) {
+            die("No manufacturers found in the database."); // Display empty result message
         }
 
         return $result;
