@@ -20,10 +20,10 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="cars.php">Cars</a>
+                <a class="nav-link" href="car.php">Cars</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="manufacturers.php">Manufacturers</a>
+                <a class="nav-link" href="carmanufacturer.php">Manufacturers</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="colors.php">Colors</a>
