@@ -24,7 +24,7 @@
               </li>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="view-manufacturer-with-cars">Manufacturer with Cars</a>
+                <a class="nav-link" href="view-combined.php">Manufacturer with Cars</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="carmanufacturer.php">Manufacturers</a>
