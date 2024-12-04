@@ -1,21 +1,10 @@
 <?php 
 require_once("util-db.php");
+require_once("selectcars.php");
 
-try {
-    $cars = selectCars();
-    foreach ($cars as $car) {
-        echo "ID: " . htmlspecialchars($car['CarID']) . ", ";
-        echo "Model: " . htmlspecialchars($car['CarModel']) . ", ";
-        echo "Color: " . htmlspecialchars($car['Color']) . ", ";
-        echo "Price: $" . htmlspecialchars(number_format($car['Price'], 2)) . "<br>";
-    }
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-$pageTitle = "Car Models";
+$pageTitle = "Cars";
 include "view-header.php";
-$Car = selectCar();
+$Cars = selectCars();
 
 include "view-car.php";
 include "view-footer.php";
