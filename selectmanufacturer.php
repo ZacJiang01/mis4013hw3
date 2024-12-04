@@ -1,15 +1,17 @@
 <?php
 require_once("util-db.php");
 
-function selectManufacturer() {
+function selectManufacturerWithCars() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch manufacturer details
+        // Query to fetch manufacturers and their associated cars
         $query = "
-            SELECT ManufacturerID, ManufacturerName
+            SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
+                   Car.CarID, Car.CarModel, Car.Color, Car.Price
             FROM Manufacturer
-            ORDER BY ManufacturerName ASC
+            LEFT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
+            ORDER BY Manufacturer.ManufacturerName ASC, Car.CarID ASC
         ";
         $result = $conn->query($query);
 
@@ -22,7 +24,7 @@ function selectManufacturer() {
         if (isset($conn)) {
             $conn->close();
         }
-        error_log("Error in selectManufacturer(): " . $e->getMessage());
+        error_log("Error in selectManufacturerWithCars(): " . $e->getMessage());
         throw $e;
     }
 }
