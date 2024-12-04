@@ -1,31 +1,41 @@
 <?php
 require_once("util-db.php");
 
-function selectManufacturer() {
-    try {
-        $conn = get_db_connection();
+$pageTitle = "Manufacturers";
 
-        // Query to fetch manufacturers and their cars
-        $query = "
-            SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
-                   Car.CarID, Car.CarModel, Car.Color, Car.Price
-            FROM Manufacturer
-            LEFT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
-            ORDER BY Manufacturer.ManufacturerName ASC, Car.CarID ASC
-        ";
-        $result = $conn->query($query);
+// Fetch manufacturers
+$conn = get_db_connection();
+$query = "SELECT ManufacturerID, ManufacturerName FROM Manufacturer";
+$result = $conn->query($query);
 
-        if (!$result) {
-            throw new Exception("Query execution failed: " . $conn->error);
-        }
-
-        return $result;
-    } catch (Exception $e) {
-        if (isset($conn)) {
-            $conn->close();
-        }
-        error_log("Error in selectManufacturer(): " . $e->getMessage());
-        throw $e;
-    }
-}
+include "view-header.php";
+?>
+<h1>Manufacturers</h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if ($result && $result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+          <tr>
+            <td><?= htmlspecialchars($row['ManufacturerID']); ?></td>
+            <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
+          </tr>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <tr>
+          <td colspan="2">No manufacturers found.</td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
+</div>
+<?php
+$conn->close();
+include "view-footer.php";
 ?>
