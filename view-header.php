@@ -20,19 +20,21 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="carmodels.php">Car Models</a>
+                <a class="nav-link" href="cars.php">Cars</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="carmakes.php">Car Makes</a>
+                <a class="nav-link" href="manufacturers.php">Manufacturers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="motorcyclemakes">Motorcycle Makes</a>
+                <a class="nav-link" href="colors.php">Colors</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="motorcyclemodels">Motorcycle Models</a>
+                <a class="nav-link" href="prices.php">Prices</a>
               </li>
-
             </ul>
           </div>
         </div>
       </nav>
+    </div>
+  </body>
+</html>
