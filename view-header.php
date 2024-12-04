@@ -22,6 +22,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="cars.php">Cars</a>
               </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="view-manufacturer-with-cars">Manufacturer with Cars</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="carmanufacturer.php">Manufacturers</a>
               </li>
