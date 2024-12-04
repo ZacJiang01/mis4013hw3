@@ -6,6 +6,6 @@ $pageTitle = "Car Makes";
 include "view-header.php";
 $carmakes = selectMakes();
 
-include "view-carmakes.php";
+include "view-carmanufacturer.php";
 include "view-footer.php";
 ?>
