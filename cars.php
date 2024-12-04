@@ -7,7 +7,7 @@ include "view-header.php";
 
 
 if (isset($_POST['actionType'])) {
-  switch ($_POST['actionType'])) {
+  switch ($_POST['actionType']) {
     case "Add";
       insertCars($_POST['cCarModel'], $_POST['cColor'], $_POST['cPrice']);
           break;
