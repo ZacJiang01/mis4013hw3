@@ -1,50 +1,55 @@
 <?php
 require_once("util-db.php");
 
-$pageTitle = "Car Prices";
+$pageTitle = "Car Colors";
 
-// Query to get cars with manufacturer names, sorted by price
+// Query to get cars grouped by color in alphabetical order
 $conn = get_db_connection();
 $query = "
-    SELECT Car.CarID, Manufacturer.ManufacturerName, Car.CarModel, Car.Color, Car.Price 
+    SELECT Car.Color, Manufacturer.ManufacturerName, Car.CarModel, Car.Price
     FROM Car
     JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
-    ORDER BY Car.Price ASC
+    ORDER BY Car.Color ASC, Manufacturer.ManufacturerName ASC, Car.CarModel ASC
 ";
 $result = $conn->query($query);
 
 include "view-header.php";
 ?>
-<h1>Car Prices</h1>
+<h1>Car Colors</h1>
 <div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Model</th>
-        <th>Color</th>
-        <th>Price</th>
-        <th>Manufacturer</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php if ($result && $result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-          <tr>
-            <td><?= htmlspecialchars($row['CarID']); ?></td>
-            <td><?= htmlspecialchars($row['CarModel']); ?></td>
-            <td><?= htmlspecialchars($row['Color']); ?></td>
-            <td>$<?= number_format($row['Price'], 2); ?></td>
-            <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
-          </tr>
-        <?php endwhile; ?>
-      <?php else: ?>
+  <?php if ($result && $result->num_rows > 0): ?>
+    <?php 
+    $currentColor = null; 
+    while ($row = $result->fetch_assoc()): 
+        if ($row['Color'] !== $currentColor): 
+            if ($currentColor !== null): ?>
+              </tbody></table>
+            <?php endif; ?>
+            <h2><?= htmlspecialchars($row['Color']); ?></h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Manufacturer</th>
+                  <th>Model</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+            <?php 
+            $currentColor = $row['Color']; 
+        endif; 
+        ?>
         <tr>
-          <td colspan="5">No cars found.</td>
+          <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
+          <td><?= htmlspecialchars($row['CarModel']); ?></td>
+          <td>$<?= number_format($row['Price'], 2); ?></td>
         </tr>
-      <?php endif; ?>
+    <?php endwhile; ?>
     </tbody>
-  </table>
+    </table>
+  <?php else: ?>
+    <p>No cars found.</p>
+  <?php endif; ?>
 </div>
 <?php
 $conn->close();
