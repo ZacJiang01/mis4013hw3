@@ -3,9 +3,14 @@ require_once("util-db.php");
 
 $pageTitle = "Car Prices";
 
-// Query to get cars sorted by price
+// Query to get cars with manufacturer names, sorted by price
 $conn = get_db_connection();
-$query = "SELECT CarID, CarModel, Color, Price FROM Car ORDER BY Price ASC";
+$query = "
+    SELECT Car.CarID, Car.CarModel, Car.Color, Car.Price, Manufacturer.ManufacturerName
+    FROM Car
+    JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
+    ORDER BY Car.Price ASC
+";
 $result = $conn->query($query);
 
 include "view-header.php";
@@ -19,6 +24,7 @@ include "view-header.php";
         <th>Model</th>
         <th>Color</th>
         <th>Price</th>
+        <th>Manufacturer</th>
       </tr>
     </thead>
     <tbody>
@@ -29,11 +35,12 @@ include "view-header.php";
             <td><?= htmlspecialchars($row['CarModel']); ?></td>
             <td><?= htmlspecialchars($row['Color']); ?></td>
             <td>$<?= number_format($row['Price'], 2); ?></td>
+            <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
           </tr>
         <?php endwhile; ?>
       <?php else: ?>
         <tr>
-          <td colspan="4">No cars found.</td>
+          <td colspan="5">No cars found.</td>
         </tr>
       <?php endif; ?>
     </tbody>
