@@ -9,11 +9,17 @@ function selectManufacturer() {
         $query = "
             SELECT ManufacturerID, ManufacturerName
             FROM Manufacturer
-            ORDER BY ManufacturerName ASC
+            ORDER BY ManufacturerID ASC
         ";
         $result = $conn->query($query);
 
-@@ -22,7 +24,7 @@ function selectManufacturer() {
+        // Check if the query executed successfully
+        if (!$result) {
+            throw new Exception("Query execution failed: " . $conn->error);
+        }
+
+        return $result;
+    } catch (Exception $e) {
         if (isset($conn)) {
             $conn->close();
         }
@@ -21,3 +27,4 @@ function selectManufacturer() {
         throw $e;
     }
 }
+?>
