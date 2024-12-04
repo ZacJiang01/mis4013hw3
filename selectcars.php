@@ -5,12 +5,11 @@ function selectCars() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch car data with manufacturer details
+        // Query to fetch car data without manufacturer details
         $query = "
-            SELECT Car.CarID, Car.CarModel, Car.Color, Car.Price, Manufacturer.ManufacturerName
+            SELECT CarID, CarModel, Color, Price
             FROM Car
-            JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
-            ORDER BY Car.CarID ASC
+            ORDER BY CarID ASC
         ";
         $result = $conn->query($query);
 
