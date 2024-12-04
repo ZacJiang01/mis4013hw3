@@ -5,6 +5,7 @@
 
   if ($CombinedData && $CombinedData->num_rows > 0):
       while ($row = $CombinedData->fetch_assoc()):
+          // Start a new table for a new manufacturer
           if ($row['ManufacturerName'] !== $currentManufacturer):
               if ($currentManufacturer !== null): ?>
                   </tbody></table>
@@ -24,6 +25,7 @@
               $currentManufacturer = $row['ManufacturerName'];
           endif;
 
+          // Add car data if available
           if ($row['CarID']): ?>
               <tr>
                   <td><?= htmlspecialchars($row['CarID']); ?></td>
