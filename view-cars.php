@@ -7,7 +7,6 @@
       <th>Model</th>
       <th>Color</th>
       <th>Price</th>
-      <th>Manufacturer</th>
      </tr>
    </thead>
    <tbody>
@@ -21,13 +20,11 @@
       <td><?php echo htmlspecialchars($car_row['CarModel']); ?></td>
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
-      <td><?php echo htmlspecialchars($car_row['ManufacturerName']); ?></td>
     </tr>
     <?php
         }
     } else {
-        // If no cars found or query failed
-        echo "<tr><td colspan='5'>No cars found or query failed.</td></tr>";
+        echo "<tr><td colspan='4'>No cars found.</td></tr>";
     }
     ?>
    </tbody>
