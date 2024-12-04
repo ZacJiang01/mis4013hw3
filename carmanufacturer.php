@@ -2,7 +2,7 @@
 require_once("util-db.php");
 require_once("selectmanufacturer.php");
 
-$pageTitle = "Car Makes";
+$pageTitle = "Manufacturer";
 include "view-header.php";
 $carmakes = selectMakes();
 
