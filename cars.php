@@ -4,7 +4,7 @@ require_once("selectcars.php");
 
 $pageTitle = "Cars";
 include "view-header.php";
-$Cars = selectCars();
+
 
 if (isset($_POST['actionType'])) {
   switch ($_POST['actionType'])) {
@@ -13,6 +13,7 @@ if (isset($_POST['actionType'])) {
           break;
   }
 }
+$Cars = selectCars();
 include "view-cars.php";
 include "view-footer.php";
 ?>
