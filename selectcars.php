@@ -5,7 +5,7 @@ function selectCars() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch car data without manufacturer details
+        // Query to fetch only car details
         $query = "
             SELECT CarID, CarModel, Color, Price
             FROM Car
