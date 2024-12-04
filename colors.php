@@ -6,10 +6,10 @@ $pageTitle = "Car Colors";
 // Query to get cars grouped by color in alphabetical order
 $conn = get_db_connection();
 $query = "
-    SELECT Car.Color, Car.CarModel, Manufacturer.ManufacturerName, Car.Price
+    SELECT Car.Color, Manufacturer.ManufacturerName, Car.CarModel, Car.Price
     FROM Car
     JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
-    ORDER BY Car.Color ASC, Car.CarModel ASC
+    ORDER BY Car.Color ASC, Manufacturer.ManufacturerName ASC, Car.CarModel ASC
 ";
 $result = $conn->query($query);
 
@@ -29,8 +29,8 @@ include "view-header.php";
             <table class="table">
               <thead>
                 <tr>
-                  <th>Model</th>
                   <th>Manufacturer</th>
+                  <th>Model</th>
                   <th>Price</th>
                 </tr>
               </thead>
@@ -40,8 +40,8 @@ include "view-header.php";
         endif; 
         ?>
         <tr>
-          <td><?= htmlspecialchars($row['CarModel']); ?></td>
           <td><?= htmlspecialchars($row['ManufacturerName']); ?></td>
+          <td><?= htmlspecialchars($row['CarModel']); ?></td>
           <td>$<?= number_format($row['Price'], 2); ?></td>
         </tr>
     <?php endwhile; ?>
