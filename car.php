@@ -4,8 +4,8 @@ require_once("selectcar.php");
 
 $pageTitle = "Car Models";
 include "view-header.php";
-$carmodels = selectModels();
+$Car = selectCar();
 
-include "view-carmodels.php";
+include "view-car.php";
 include "view-footer.php";
 ?>
