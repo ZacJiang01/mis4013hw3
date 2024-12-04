@@ -24,7 +24,7 @@
     <?php
         }
     } else {
-        echo "<tr><td colspan='4'>No cars found.</td></tr>";
+        echo "<tr><td colspan='4'>No cars found or query failed.</td></tr>";
     }
     ?>
    </tbody>
