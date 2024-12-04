@@ -5,22 +5,15 @@ function selectManufacturer() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch manufacturers and their associated cars
+        // Query to fetch manufacturer details
         $query = "
-            SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
-                   Car.CarID, Car.CarModel, Car.Color, Car.Price
+            SELECT ManufacturerID, ManufacturerName
             FROM Manufacturer
-            LEFT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
-            ORDER BY Manufacturer.ManufacturerName ASC, Car.CarID ASC
+            ORDER BY ManufacturerName ASC
         ";
         $result = $conn->query($query);
 
-        if (!$result) {
-            throw new Exception("Query execution failed: " . $conn->error);
-        }
-
-        return $result;
-    } catch (Exception $e) {
+@@ -22,7 +24,7 @@ function selectManufacturer() {
         if (isset($conn)) {
             $conn->close();
         }
@@ -28,4 +21,3 @@ function selectManufacturer() {
         throw $e;
     }
 }
-?>
