@@ -6,7 +6,7 @@ $pageTitle = "Car Prices";
 // Query to get cars with manufacturer names, sorted by price
 $conn = get_db_connection();
 $query = "
-    SELECT Car.CarID, Car.CarModel, Car.Color, Car.Price, Manufacturer.ManufacturerName
+    SELECT Car.CarID, Manufacturer.ManufacturerName, Car.CarModel, Car.Color, Car.Price 
     FROM Car
     JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
     ORDER BY Car.Price ASC
