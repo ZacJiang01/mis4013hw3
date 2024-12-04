@@ -5,7 +5,7 @@ function get_db_connection() {
         'mis4013hw3database.mysql.database.azure.com',
         'jian0040',
         'Beans1310098965!!',
-        'my_database'
+        'cardealership'
     );
 
     // Check connection
