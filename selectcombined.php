@@ -10,7 +10,7 @@ function selectCombinedData() {
             SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
                    Car.CarID, Car.CarModel, Car.Color, Car.Price
             FROM Manufacturer
-            LEFT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
+            RIGHT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
             ORDER BY Manufacturer.ManufacturerName ASC, Car.CarID ASC
         ";
         $result = $conn->query($query);
