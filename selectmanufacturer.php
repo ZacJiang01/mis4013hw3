@@ -9,7 +9,7 @@ function selectManufacturer() {
         $query = "
             SELECT ManufacturerID, ManufacturerName
             FROM Manufacturer
-            ORDER BY ManufacturerName ASC
+            ORDER BY ManufacturerName
         ";
         $result = $conn->query($query);
 
