@@ -1,12 +1,12 @@
 <?php
 require_once("util-db.php");
 
-function selectMakes() {
+function selectManufacturer() {
     try {
         $conn = get_db_connection();
         
-        // Prepare and execute the SQL query to fetch car makes
-        $stmt = $conn->prepare("SELECT make_id, make_name, make_country FROM car_make");
+        // Prepare and execute the SQL query to fetch manufacturers
+        $stmt = $conn->prepare("SELECT ManufacturerID, ManufacturerName FROM Manufacturer");
         
         // Execute the statement
         if (!$stmt->execute()) {
@@ -16,7 +16,7 @@ function selectMakes() {
         // Get the result set from the query
         $result = $stmt->get_result();
         
-        // Close the connection after use
+        // Close the statement and connection after use
         $stmt->close();
         $conn->close();
         
@@ -29,7 +29,7 @@ function selectMakes() {
         }
         
         // Log the error for debugging
-        error_log("Error in selectMakes(): " . $e->getMessage());
+        error_log("Error in selectManufacturer(): " . $e->getMessage());
         
         // Rethrow the exception to be handled elsewhere
         throw $e;
