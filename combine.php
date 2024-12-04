@@ -6,7 +6,9 @@ $pageTitle = "Manufacturers and Cars";
 include "view-header.php";
 
 try {
+    // Fetch combined data of manufacturers and cars
     $CombinedData = selectCombinedData();
+    // Include the view to render the data
     include "view-combined.php";
 } catch (Exception $e) {
     echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
