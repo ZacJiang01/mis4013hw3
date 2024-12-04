@@ -5,7 +5,7 @@ function selectManufacturer() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch only car details
+        // Query to fetch manufacturer details
         $query = "
             SELECT ManufacturerID, ManufacturerName
             FROM Manufacturer
