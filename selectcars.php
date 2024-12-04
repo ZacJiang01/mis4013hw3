@@ -26,4 +26,6 @@ function selectCars() {
         throw $e;
     }
 }
+
+function insertCars($cCarModel, $cColor, $cPrice
 ?>
