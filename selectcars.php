@@ -27,17 +27,4 @@ function selectCars() {
     }
 }
 
-function insertCars($cCarModel, $cColor, $cPrice) {
-    try {
-        $conn = get_db_connection();
-        $stmt = $conn->prepare("INSERT INTO 'car' ('carmodel, 'color', 'price',) VALUES (?, ?, ?)");
-        $stmt ->bind_param("ss", $cCarModel, $cColorm $cPrice);
-        $success = stmt -?execute();
-        $conn ->close();
-        return $success;
-    } catch (Exception $e) {
-        $conn->close();
-        throw $e;
-    }
-}
 ?>
