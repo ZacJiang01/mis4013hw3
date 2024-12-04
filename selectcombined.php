@@ -5,14 +5,23 @@ function selectCombinedData() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch manufacturers and their cars
+        // Query to fetch all manufacturers and cars
         $query = "
             SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
                    Car.CarID, Car.CarModel, Car.Color, Car.Price
             FROM Manufacturer
             LEFT JOIN Car ON Manufacturer.ManufacturerID = Car.ManufacturerID
-            ORDER BY Manufacturer.ManufacturerName ASC, Car.CarID ASC
+
+            UNION
+
+            SELECT Manufacturer.ManufacturerID, Manufacturer.ManufacturerName, 
+                   Car.CarID, Car.CarModel, Car.Color, Car.Price
+            FROM Car
+            LEFT JOIN Manufacturer ON Manufacturer.ManufacturerID = Car.ManufacturerID
+
+            ORDER BY ManufacturerName ASC, CarID ASC;
         ";
+
         $result = $conn->query($query);
 
         if (!$result) {
