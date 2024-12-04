@@ -8,7 +8,6 @@ $conn = get_db_connection();
 $query = "SELECT ManufacturerID, ManufacturerName FROM Manufacturer";
 $result = $conn->query($query);
 
-include "view-header.php";
 ?>
 <h1>Manufacturers</h1>
 <div class="table-responsive">
