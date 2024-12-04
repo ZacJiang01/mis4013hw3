@@ -4,7 +4,7 @@ require_once("selectmanufacturer.php");
 
 $pageTitle = "Manufacturer";
 include "view-header.php";
-$carmakes = selectMakes();
+$Manufacturer = selectManufacturer();
 
 include "view-carmanufacturer.php";
 include "view-footer.php";
