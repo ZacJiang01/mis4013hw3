@@ -2,10 +2,18 @@
 require_once("util-db.php");
 require_once("selectmanufacturer.php");
 
-$pageTitle = "Manufacturer";
+$pageTitle = "Manufacturers";
 include "view-header.php";
-$Manufacturer = selectManufacturer();
 
-include "view-carmanufacturer.php";
+try {
+    // Fetch manufacturers
+    $Manufacturers = selectManufacturer();
+
+    // Include the view to display the data
+    include "view-carmanufacturer.php";
+} catch (Exception $e) {
+    echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
+}
+
 include "view-footer.php";
 ?>
