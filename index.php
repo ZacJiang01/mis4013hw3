@@ -5,7 +5,7 @@ include "view-header.php";
 <div class="container my-5">
     <!-- Hero Section -->
     <div class="bg-light p-5 rounded text-center">
-        <h1 class="display-4">Welcome to [Your Dealership Name]</h1>
+        <h1 class="display-4">Welcome to the Norman Car Dealership </h1>
         <p class="lead">Find the car of your dreams at unbeatable prices. Browse our collection of premium vehicles today!</p>
         <a href="cars.php" class="btn btn-primary btn-lg">View Inventory</a>
     </div>
