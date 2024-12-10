@@ -33,6 +33,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="prices.php">Prices</a>
               </li>
+                <li class="nav-item">
+                <a class="nav-link" href="manufactur-and-cars.php">Manufacturer and Cars</a>
+              </li>
             </ul>
           </div>
         </div>
