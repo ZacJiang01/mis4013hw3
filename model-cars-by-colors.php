@@ -15,7 +15,9 @@ function selectCarsByColors($color) {
         $stmt->bind_param("s", $color);
 
         // Execute the query
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception("SQL Error: " . $stmt->error);
+        }
 
         // Get the result set
         $result = $stmt->get_result();
