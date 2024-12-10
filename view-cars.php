@@ -22,6 +22,12 @@
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
       <td><?php echo htmlspecialchars($car_row['ManufacturerName']); ?></td>
+      <td>
+        <form method = "post" action ="cars-bycolors.php">
+          <input type = "hidden" name = "cid" value ="<?php echo htmlspecialchars($car_row['Color']); ?>">
+          <button type="submit" class="btn btn-primary">Colors</button>
+        </form>
+      </td>
     </tr>
     <?php
         }
