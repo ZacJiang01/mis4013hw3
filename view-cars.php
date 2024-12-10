@@ -22,7 +22,7 @@
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
       <td>
-        <a href="manufacturer_cars.php?manufacturer=<?php echo urlencode($car_row['Manufacturer']); ?>">
+        <a href="cars-by-manufacturers.php?manufacturer=<?php echo urlencode($car_row['Manufacturer']); ?>">
           <?php echo htmlspecialchars($car_row['Manufacturer']); ?>
         </a>
       </td>
