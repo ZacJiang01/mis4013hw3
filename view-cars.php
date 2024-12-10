@@ -20,6 +20,7 @@
       <td><?php echo htmlspecialchars($car_row['CarModel']); ?></td>
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
+      <td><a href = "cars-by-manufacturers.php?id=<?php echo htmlspecialchars($car_row['CarID']; ?>" ?>Manufacturer</td>
     </tr>
     <?php
         }
