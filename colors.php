@@ -1,6 +1,6 @@
 <?php 
 require_once("util-db.php");
-require_once("selectcars.php");
+require_once("selectColors.php");
 
 $pageTitle = "Colors";
 include "view-header.php";
