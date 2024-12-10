@@ -21,6 +21,7 @@
       <td><?php echo htmlspecialchars($car_row['CarModel']); ?></td>
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
+      <td><?php echo htmlspecialchars($car_row['Manufacturer']); ?></td>
     </tr>
     <?php
         }
