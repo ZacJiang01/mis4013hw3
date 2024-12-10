@@ -7,7 +7,7 @@ function selectColors() {
 
         // Query to fetch only car details
         $query = "
-            SELECT Color
+            SELECT Distinct Color
             FROM car 
         ";
         $result = $conn->query($query);
