@@ -6,10 +6,7 @@ $pageTitle = "Car Colors";
 // Query to get cars grouped by color in alphabetical order
 $conn = get_db_connection();
 $query = "
-    SELECT Car.Color, Manufacturer.ManufacturerName, Car.CarModel, Car.Price
-    FROM Car
-    JOIN Manufacturer ON Car.ManufacturerID = Manufacturer.ManufacturerID
-    ORDER BY Car.Color ASC, Manufacturer.ManufacturerName ASC, Car.CarModel ASC
+    SELECT Car.Color
 ";
 $result = $conn->query($query);
 
