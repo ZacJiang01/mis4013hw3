@@ -19,7 +19,7 @@
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
 
       <td>
-        <form method = "post" action ="cars-bycolors.php">
+        <form method = "post" action ="cars-by-colors.php">
           <input type = "hidden" name = "cid" value ="<?php echo htmlspecialchars($car_row['Color']); ?>">
           <button type="submit" class="btn btn-primary">Colors</button>
         </form>
