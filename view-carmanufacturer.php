@@ -17,7 +17,7 @@
         <td><?php echo htmlspecialchars($manufacturer_row['ManufacturerID']); ?></td>
         <td><?php echo htmlspecialchars($manufacturer_row['ManufacturerName']); ?></td>
         <td>
-          <a href="cars-by-manufacturers.php?manufacturer=<?php echo urlencode($manufacturer_row['ManufacturerName']); ?>">
+          <a href="cars-by-manufacturers.php?manufacturer=<?php echo urlencode($manufacturer_row['ManufacturerID']); ?>">
             View Cars
           </a>
         </td>
