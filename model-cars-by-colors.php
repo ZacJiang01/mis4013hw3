@@ -8,7 +8,7 @@ function selectCarsByColors($color) {
             SELECT CarId, CarModel, Color, Price, ManufacturerName
             FROM Car c
             JOIN Manufacturer m ON c.ManufacturerID = m.ManufacturerID
-            WHERE Color = ?
+            WHERE LOWER(Color) = LOWER(?)
         ");
 
         // Bind the color as a string
