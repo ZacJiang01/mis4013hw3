@@ -8,7 +8,7 @@ function selectCarsByManufacturer($manufacturerId) {
             SELECT CarId, CarModel, Color, Price, ManufacturerName
             FROM Car c
             JOIN Manufacturer m ON c.ManufacturerID = m.ManufacturerID
-            WHERE m.ManufacturerID = ?
+            WHERE m.ManufacturerID = 1
         ");
 
         // Bind the manufacturer ID as an integer
