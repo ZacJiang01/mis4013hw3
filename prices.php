@@ -1,3 +1,14 @@
+<div class = "row">
+  <div class = "col">
+    <h1>Cars</h1>
+  </div>
+  <div class = "col-auto">
+  <?php
+include "view-add-functionality.php";
+?>
+  </div>
+</div>
+
 <?php
 require_once("util-db.php");
 
