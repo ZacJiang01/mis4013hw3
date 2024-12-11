@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
                 $error_message = "All fields are required, and price must be a positive number.";
             } else {
                 if (!insertCar($carModel, $color, $price)) {
-                    $error_message = "Failed to add car.";
+                    echo '<div class ="alert-danger" role ="alert">Error.</div>';
                 } else {
-                    $success_message = "Car added successfully!";
+                    echo '<div class = "alert alert-success" role ="alert">New Car Added.</div>';
                 }
             }
             break;
