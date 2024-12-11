@@ -7,9 +7,8 @@ function selectCars() {
 
         // Query to fetch car details
         $query = "
-            SELECT CarID, CarModel, Color, Price, ManufacturerName
+            SELECT CarID, CarModel, Color, Price,
             FROM car c
-            JOIN manufacturer m ON c.ManufacturerID = m.ManufacturerID
             ORDER BY CarID ASC
         ";
         $result = $conn->query($query);
