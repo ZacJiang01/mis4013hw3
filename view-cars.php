@@ -17,9 +17,9 @@ include "view-add-functionality.php";
       <th>Model</th>
       <th>Color</th>
       <th>Price</th>
-       <th><</th>
-        <th><</th>
-          <th><</th>
+       <th></th>
+        <th></th>
+          <th></th>
      </tr>
    </thead>
    <tbody>
