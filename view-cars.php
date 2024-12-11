@@ -37,9 +37,8 @@ include "view-add-functionality.php";
   
       <td>
       <?php
-          include "view-edit-functionality.php";
-            ?>
-
+      include "view-edit-functionality.php";
+      ?>
       </td>
       <td>
           <form method = "post" action ="">
