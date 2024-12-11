@@ -27,7 +27,8 @@
        <div class="mb-3">
        <label for="Price" class="form-label">Price</label>
           <input type="text" class="form-control" id="Price" name="Price">
-        </div>         
+        </div>
+          <input type = "hidden" name = "actionType" value = "Add">
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
