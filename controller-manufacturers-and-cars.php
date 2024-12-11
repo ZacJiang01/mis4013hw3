@@ -1,4 +1,5 @@
 <?php
+include"view-header.php";
 require_once("model-manufacturers.php");
 
 // Fetch manufacturers and their cars
@@ -12,4 +13,5 @@ try {
 
 // Include the view to display data
 include "view-manufacturer-and-cars.php";
+include "view-footer.php";
 ?>
