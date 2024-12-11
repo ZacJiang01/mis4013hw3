@@ -5,7 +5,7 @@ require_once("selectcars.php");
 $pageTitle = "Cars";
 include "view-header.php";
 
-if (isset($_POST['actiontType'])) {
+if (isset($_POST['actionType'])) {
 switch ($_POST['actionType']) {
   case "Add":
   insertCar($_POST['CarModel'], $_POST['Color'], $_POST['Price']);
