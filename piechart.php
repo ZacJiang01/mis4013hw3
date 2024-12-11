@@ -1,7 +1,7 @@
 <?php
 require_once("util-db.php");
 
-// Fetch data from the database and group cars by price range
+// Fetch data from the database and group cars by price range in increments of $10,000
 function getCarPriceRanges() {
     try {
         $conn = get_db_connection();
@@ -13,24 +13,25 @@ function getCarPriceRanges() {
         }
 
         // Initialize price range counts
-        $ranges = [
-            "< $20k" => 0,
-            "$20k - $40k" => 0,
-            "> $40k" => 0
-        ];
+        $ranges = [];
+        $step = 10000;
 
         while ($row = $result->fetch_assoc()) {
             $price = $row['Price'];
-            if ($price < 20000) {
-                $ranges["< $20k"]++;
-            } elseif ($price <= 40000) {
-                $ranges["$20k - $40k"]++;
-            } else {
-                $ranges["> $40k"]++;
+            $rangeIndex = intval($price / $step) * $step;
+
+            $rangeLabel = ($rangeIndex < 100000) 
+                ? "$" . number_format($rangeIndex) . " - $" . number_format($rangeIndex + $step - 1) 
+                : "> $100,000";
+
+            if (!isset($ranges[$rangeLabel])) {
+                $ranges[$rangeLabel] = 0;
             }
+            $ranges[$rangeLabel]++;
         }
 
         $conn->close();
+        ksort($ranges); // Sort ranges by price for consistent display
         return $ranges;
     } catch (Exception $e) {
         error_log("Error fetching car price ranges: " . $e->getMessage());
@@ -44,6 +45,7 @@ $priceRanges = getCarPriceRanges();
 <html>
 <head>
     <title>Car Price Range Pie Chart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         // Load Google Charts
@@ -69,8 +71,8 @@ $priceRanges = getCarPriceRanges();
             var options = {
                 title: 'Car Price Ranges',
                 pieHole: 0.4,
-                colors: ['#4caf50', '#2196f3', '#f44336'],
-                is3D: true
+                colors: ['#4caf50', '#2196f3', '#f44336', '#ff9800', '#9c27b0', '#00bcd4', '#8bc34a'],
+                chartArea: { width: '80%', height: '80%' }
             };
 
             // Render the chart
@@ -79,8 +81,17 @@ $priceRanges = getCarPriceRanges();
         }
     </script>
 </head>
-<body>
-    <h1>Car Price Range Pie Chart</h1>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Car Price Range Distribution</h1>
+            <p class="lead">Visual representation of cars grouped by price ranges.</p>
+        </div>
+        <div class="card shadow">
+            <div class="card-body">
+                <div id="piechart" style="width: 100%; height: 500px;"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
