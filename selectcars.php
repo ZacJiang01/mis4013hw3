@@ -26,4 +26,47 @@ function selectCars() {
         throw $e;
     }
 }
+
+function insertCar($CarModel, $Color, $Price) {
+    try {
+        $conn = get_db_connection();
+        $stmt = $conn->prepare("INSERT INTO 'car' ('CarModel', 'Color', 'Price',) VALUES (?, ?, ?)");
+        $stmt ->bind_param("ssi", $CarModel, $Color, $Price);
+        $success = $stmt->execute();
+        $conn->close();
+        return $success;
+    } catch (Exception $e) {
+        $conn ->close();
+        throw $e;
+        
+    }
+}
+function updateCar($CarModel, $Color, $Price, $CarID) {
+    try {
+        $conn = get_db_connection();
+        $stmt = $conn->prepare("Update 'car' set 'CarModel'= ?, 'Color' = ?, 'Price' = ?, where CarID = ?");
+        $stmt ->bind_param("ssii", $CarModel, $Color, $Price, $CarID);
+        $success = $stmt->execute();
+        $conn->close();
+        return $success;
+    } catch (Exception $e) {
+        $conn ->close();
+        throw $e;
+        
+    }
+}
+function DeleteCar($CarID) {
+    try {
+        $conn = get_db_connection();
+        $stmt = $conn->prepare("delete from car where CarID =?");
+        $stmt ->bind_param("i", $CarID);
+        $success = $stmt->execute();
+        $conn->close();
+        return $success;
+    } catch (Exception $e) {
+        $conn ->close();
+        throw $e;
+        
+    }
+}
 ?>
