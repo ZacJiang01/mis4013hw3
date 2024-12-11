@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
             break;
         
         case "Edit":
-        if (updateCar ($_POST['CarID'], $_POST['CarModel'], $_POST['Color'], $_POST['Price'])) {
+        if (updateCar ($_POST['CarModel'], $_POST['Color'], $_POST['Price'], $_POST['CarID'])) {
             echo '<div class = "alert alert-success" role ="alert">Edited Successfully.</div>';
             
                 } else {
