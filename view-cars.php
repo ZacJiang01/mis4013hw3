@@ -17,7 +17,7 @@ include "view-add-functionality.php";
       <th>Model</th>
       <th>Color</th>
       <th>Price</th>
-      <th>Manufacturer</th>
+
      </tr>
    </thead>
    <tbody>
@@ -31,7 +31,7 @@ include "view-add-functionality.php";
       <td><?php echo htmlspecialchars($car_row['CarModel']); ?></td>
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
-      <td><?php echo htmlspecialchars($car_row['ManufacturerName']); ?></td>
+
       <td>
    
       </td>
