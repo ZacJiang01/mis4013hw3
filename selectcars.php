@@ -27,38 +27,29 @@ function selectCars() {
     }
 }
 
-function deleteCar($CarID) {
+function insertCar($CarModel, $Color, $Price) {
     try {
-        if ($CarID <= 0) {
-            throw new Exception("Invalid CarID: " . $CarID);
-        }
-
         $conn = get_db_connection();
 
-        $stmt = $conn->prepare("DELETE FROM car WHERE CarID = ?");
-        if (!$stmt) {
-            throw new Exception("Failed to prepare statement: " . $conn->error);
-        }
+        $stmt = $conn->prepare("
+            INSERT INTO car (CarModel, Color, Price)
+            VALUES (?, ?, ?)
+        ");
+        $stmt->bind_param("ssi", $CarModel, $Color, $Price);
 
-        $stmt->bind_param("i", $CarID);
-
-        if (!$stmt->execute()) {
-            throw new Exception("Failed to execute delete query: " . $stmt->error);
-        }
-
+        $success = $stmt->execute();
         $stmt->close();
         $conn->close();
 
-        return true;
+        return $success;
     } catch (Exception $e) {
-        if (isset($conn) && $conn->ping()) {
+        if (isset($conn)) {
             $conn->close();
         }
-        error_log("Error in deleteCar(): " . $e->getMessage());
-        return false;
+        error_log("Error in insertCar(): " . $e->getMessage());
+        throw $e;
     }
 }
-
 
 function updateCar($CarModel, $Color, $Price, $CarID) {
     try {
@@ -85,5 +76,27 @@ function updateCar($CarModel, $Color, $Price, $CarID) {
     }
 }
 
+function deleteCar($CarID) {
+    try {
+        $conn = get_db_connection();
 
+        $stmt = $conn->prepare("
+            DELETE FROM car
+            WHERE CarID = ?
+        ");
+        $stmt->bind_param("i", $CarID);
+
+        $success = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+
+        return $success;
+    } catch (Exception $e) {
+        if (isset($conn)) {
+            $conn->close();
+        }
+        error_log("Error in deleteCar(): " . $e->getMessage());
+        throw $e;
+    }
+}
 ?>
