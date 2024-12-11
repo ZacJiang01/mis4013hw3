@@ -1,4 +1,14 @@
-<h1>Cars by Colors</h1>
+<div class = "row">
+  <div class = "col">
+    <h1>Colors</h1>
+  </div>
+  <div class = "col-auto">
+  <?php
+include "view-add-functionality.php";
+?>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="table">
     <thead>
