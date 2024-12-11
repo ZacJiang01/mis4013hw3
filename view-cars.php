@@ -34,6 +34,10 @@ include "view-add-functionality.php";
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
 
+      <?php
+          include "view-edit-functionality.php";
+            ?>
+
       <td>
    
       </td>
