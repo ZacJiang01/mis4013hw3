@@ -85,27 +85,5 @@ function updateCar($CarModel, $Color, $Price, $CarID) {
     }
 }
 
-function deleteCar($CarID) {
-    try {
-        $conn = get_db_connection();
 
-        $stmt = $conn->prepare("
-            DELETE FROM car
-            WHERE CarID = ?
-        ");
-        $stmt->bind_param("i", $CarID);
-
-        $success = $stmt->execute();
-        $stmt->close();
-        $conn->close();
-
-        return $success;
-    } catch (Exception $e) {
-        if (isset($conn)) {
-            $conn->close();
-        }
-        error_log("Error in deleteCar(): " . $e->getMessage());
-        throw $e;
-    }
-}
 ?>
