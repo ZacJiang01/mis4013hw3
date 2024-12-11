@@ -78,25 +78,34 @@ function updateCar($CarModel, $Color, $Price, $CarID) {
 
 function deleteCar($CarID) {
     try {
+        if ($CarID <= 0) {
+            throw new Exception("Invalid CarID: " . $CarID);
+        }
+
         $conn = get_db_connection();
 
-        $stmt = $conn->prepare("
-            DELETE FROM car
-            WHERE CarID = ?
-        ");
+        $stmt = $conn->prepare("DELETE FROM car WHERE CarID = ?");
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement: " . $conn->error);
+        }
+
         $stmt->bind_param("i", $CarID);
 
-        $success = $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception("Failed to execute delete query: " . $stmt->error);
+        }
+
         $stmt->close();
         $conn->close();
 
-        return $success;
+        return true;
     } catch (Exception $e) {
-        if (isset($conn)) {
+        if (isset($conn) && $conn->ping()) {
             $conn->close();
         }
         error_log("Error in deleteCar(): " . $e->getMessage());
-        throw $e;
+        return false;
     }
 }
+
 ?>
