@@ -1,13 +1,3 @@
-<div class = "row">
-  <div class = "col">
-    <h1>Cars</h1>
-  </div>
-  <div class = "col-auto">
-  <?php
-include "view-add-functionality.php";
-?>
-  </div>
-</div>
 
 <?php
 require_once("util-db.php");
@@ -39,6 +29,16 @@ include "view-header.php";
     Sort by Price: <?= $sortOrder === 'ASC' ? 'Descending' : 'Ascending'; ?>
   </a>
 </div>
+<div class = "row">
+  <div class = "col">
+  </div>
+  <div class = "col-auto">
+  <?php
+include "view-add-functionality.php";
+?>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="table">
     <thead>
