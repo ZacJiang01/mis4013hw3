@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
                 $error_message = "All fields are required, and price must be a positive number.";
             } else {
                 if (!insertCar($carModel, $color, $price)) {
-                    echo '<div class ="alert-danger" role ="alert">Error.</div>';
+                    echo '<div class ="alert alert-danger" role ="alert">Error.</div>';
                 } else {
                     echo '<div class = "alert alert-success" role ="alert">New Car Added.</div>';
                 }
@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
         default:
             $error_message = "Invalid action.";
     }
+        header("Location: cars.php");
+    exit();
     
 }
   
