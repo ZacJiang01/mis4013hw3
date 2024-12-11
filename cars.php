@@ -23,12 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
                 }
             }
             break;
+       
+        case "Delete":
+            // Handle delete car action
+            $carID = intval($_POST['CarID']);
+            if (deleteCar($carID)) {
+                $success_message = "Car deleted successfully.";
+            } else {
+                $error_message = "Error deleting car.";
+            }
+            break;
+
+        default:
+            $error_message = "Invalid action.";
     }
-    case "Delete":
-        if (deleteCar($_POST['CarID'])) {
-        echo '<div class ="alert alert success" role"=alert">Car Deleted.</div>"';
-    } else {
-        echo '<div class ="alert alert-danger" role="alert">Error.</div>';
+    
 }
   
 $Cars = selectCars();
