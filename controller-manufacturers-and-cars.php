@@ -11,5 +11,5 @@ try {
 }
 
 // Include the view to display data
-include "view-manufacturers.php";
+include "view-manufacturer-and-cars.php";
 ?>
