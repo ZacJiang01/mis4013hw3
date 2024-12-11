@@ -24,6 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
             }
             break;
     }
+    case "Delete":
+        if (deleteCar($_POST['CarID'])) {
+        echo '<div class ="alert alert success" role"=alert">Car Deleted.</div>"';
+    } else {
+        echo '<div class ="alert alert-danger" role="alert">Error.</div>';
 }
   
 $Cars = selectCars();
