@@ -7,7 +7,7 @@ function selectCars() {
 
         // Query to fetch car details
         $query = "
-            SELECT CarID, CarModel, Color, Price,
+            SELECT CarID, CarModel, Color, Price
             FROM car c
             ORDER BY CarID ASC
         ";
