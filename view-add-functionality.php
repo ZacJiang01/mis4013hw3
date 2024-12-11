@@ -20,9 +20,14 @@
           <label for="CarModel" class="form-label">Car Model</label>
           <input type="text" class="form-control" id="CarModel" name="CarModel">
         </div>
+        <div class="mb-3">
        <label for="Color" class="form-label">Color</label>
           <input type="text" class="form-control" id="Color" name="Color">
         </div>
+       <div class="mb-3">
+       <label for="Price" class="form-label">Price</label>
+          <input type="text" class="form-control" id="Price" name="Price">
+        </div>         
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
