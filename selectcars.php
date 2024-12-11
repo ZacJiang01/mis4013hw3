@@ -35,7 +35,7 @@ function insertCar($CarModel, $Color, $Price) {
             INSERT INTO car (CarModel, Color, Price)
             VALUES (?, ?, ?)
         ");
-        $stmt->bind_param("sss", $CarModel, $Color, number_format($Price, 2, '.', '');
+        $stmt->bind_param("ssi", $CarModel, $Color, $Price);
 
         $success = $stmt->execute();
         $stmt->close();
