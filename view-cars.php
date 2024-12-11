@@ -34,12 +34,12 @@ include "view-add-functionality.php";
       <td><?php echo htmlspecialchars($car_row['Color']); ?></td>
       <td>$<?php echo number_format($car_row['Price'], 2); ?></td>
 
+  
+      <td>
       <?php
           include "view-edit-functionality.php";
             ?>
 
-      <td>
-   
       </td>
       <td>
           <form method = "post" action ="">
