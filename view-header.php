@@ -36,6 +36,9 @@
                 <li class="nav-item">
                 <a class="nav-link" href="manufacturer-and-cars.php">Manufacturer and Cars</a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="piechart.php">Price Pie Graph</a>
+              </li>
             </ul>
           </div>
         </div>
