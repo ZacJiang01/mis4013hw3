@@ -31,6 +31,11 @@ include "view-add-functionality.php";
           </a>
 
         </td>
+         <td>
+      <?php
+      include "view-edit-functionality.php";
+      ?>
+      </td>
       </tr>
       <?php
           }
