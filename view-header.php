@@ -1,48 +1,97 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?=$pageTitle?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="cars.php">Cars</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="carmanufacturer.php">Manufacturers</a>
-              </li>
-              </li>
+<?php
+require_once("util-db.php");
 
-              <li class="nav-item">
-                <a class="nav-link" href="colors.php">Colors</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="prices.php">Prices</a>
-              </li>
-                <li class="nav-item">
-                <a class="nav-link" href="manufacturer-and-cars.php">Manufacturer and Cars</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link" href="piechart.php">Price Pie Graph</a>
-              </li>
-            </ul>
-          </div>
+// Fetch data from the database and group cars by price range in increments of $10,000
+function getCarPriceRanges() {
+    try {
+        $conn = get_db_connection();
+        $query = "SELECT Price FROM car";
+        $result = $conn->query($query);
+
+        if (!$result) {
+            throw new Exception("Query failed: " . $conn->error);
+        }
+
+        // Initialize price range counts
+        $ranges = [];
+        $step = 10000;
+
+        while ($row = $result->fetch_assoc()) {
+            $price = $row['Price'];
+            $rangeIndex = intval($price / $step) * $step;
+
+            $rangeLabel = ($rangeIndex < 100000) 
+                ? "$" . number_format($rangeIndex) . " - $" . number_format($rangeIndex + $step - 1) 
+                : "> $100,000";
+
+            if (!isset($ranges[$rangeLabel])) {
+                $ranges[$rangeLabel] = 0;
+            }
+            $ranges[$rangeLabel]++;
+        }
+
+        $conn->close();
+        ksort($ranges); // Sort ranges by price for consistent display
+        return $ranges;
+    } catch (Exception $e) {
+        error_log("Error fetching car price ranges: " . $e->getMessage());
+        return null;
+    }
+}
+
+$priceRanges = getCarPriceRanges();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Range Pie Chart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load Google Charts
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Draw the chart when the page is loaded
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Prepare the data
+            var data = google.visualization.arrayToDataTable([
+                ['Price Range', 'Count'],
+                <?php
+                if ($priceRanges) {
+                    foreach ($priceRanges as $range => $count) {
+                        echo "['$range', $count],";
+                    }
+                }
+                ?>
+            ]);
+
+            // Chart options
+            var options = {
+                title: 'Car Price Ranges',
+                pieHole: 0.4,
+                colors: ['#4caf50', '#2196f3', '#f44336', '#ff9800', '#9c27b0', '#00bcd4', '#8bc34a'],
+                chartArea: { width: '80%', height: '80%' }
+            };
+
+            // Render the chart
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Car Price Range Distribution</h1>
+            <p class="lead">Visual representation of cars grouped by price ranges.</p>
         </div>
-      </nav>
+        <div class="card shadow">
+            <div class="card-body">
+                <div id="piechart" style="width: 100%; height: 500px;"></div>
+            </div>
+        </div>
     </div>
-  </body>
+</body>
 </html>
