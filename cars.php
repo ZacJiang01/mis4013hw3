@@ -37,8 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
         default:
             $error_message = "Invalid action.";
     }
-        header("Location: cars.php");
-    exit();
+
     
 }
   
