@@ -60,6 +60,11 @@ include "view-add-functionality.php";
             <td><?= htmlspecialchars($row['Color']); ?></td>
             <td>$<?= number_format($row['Price'], 2); ?></td>
           </tr>
+            <td>
+      <?php
+      include "view-edit-functionality.php";
+      ?>
+      </td>
         <?php endwhile; ?>
       <?php else: ?>
         <tr>
