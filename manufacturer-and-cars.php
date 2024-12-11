@@ -1,5 +1,5 @@
 <?php
-include("view-header.php");
+include"view-header.php";
 require_once("util-db.php");
 
 function getManufacturersWithCars() {
