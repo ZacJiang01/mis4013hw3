@@ -28,15 +28,15 @@ function selectCars() {
     }
 }
 
-function insertCar($CarModel, $Color, $Price, $ManufacturerID) {
+function insertCar($CarModel, $Color, $Price) {
     try {
         $conn = get_db_connection();
 
         $stmt = $conn->prepare("
-            INSERT INTO car (CarModel, Color, Price, ManufacturerID)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO car (CarModel, Color, Price)
+            VALUES (?, ?, ?)
         ");
-        $stmt->bind_param("ssdi", $CarModel, $Color, $Price, $ManufacturerID);
+        $stmt->bind_param("ssd", $CarModel, $Color, $Price);
 
         $success = $stmt->execute();
         $stmt->close();
