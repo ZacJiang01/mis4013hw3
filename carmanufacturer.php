@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
 
 // Fetch and display manufacturers
 try {
-    $manufacturers = selectManufacturer();
+    $manufacturer = selectManufacturer();
     include "view-carmanufacturer.php";
 } catch (Exception $e) {
     echo "<p class='alert alert-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
