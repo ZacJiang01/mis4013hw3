@@ -4,6 +4,9 @@ require_once("util-db.php");
 function selectManufacturer() {
     try {
         $conn = get_db_connection();
+        if (!$conn) {
+            throw new Exception("Database connection failed.");
+        }
 
         $query = "
             SELECT ManufacturerID, ManufacturerName
@@ -14,6 +17,10 @@ function selectManufacturer() {
 
         if (!$result) {
             throw new Exception("Query execution failed: " . $conn->error);
+        }
+
+        if ($result->num_rows === 0) {
+            return []; // No manufacturers found
         }
 
         return $result;
@@ -33,6 +40,9 @@ function insertManufacturer($ManufacturerName) {
         }
 
         $conn = get_db_connection();
+        if (!$conn) {
+            throw new Exception("Database connection failed.");
+        }
 
         $stmt = $conn->prepare("
             INSERT INTO manufacturer (ManufacturerName)
@@ -57,10 +67,13 @@ function insertManufacturer($ManufacturerName) {
 function updateManufacturer($ManufacturerID, $ManufacturerName) {
     try {
         if (empty($ManufacturerName) || $ManufacturerID <= 0) {
-            throw new Exception("Invalid input data.");
+            throw new Exception("Invalid Manufacturer ID or name.");
         }
 
         $conn = get_db_connection();
+        if (!$conn) {
+            throw new Exception("Database connection failed.");
+        }
 
         $stmt = $conn->prepare("
             UPDATE Manufacturer
@@ -86,10 +99,13 @@ function updateManufacturer($ManufacturerID, $ManufacturerName) {
 function deleteManufacturer($ManufacturerID) {
     try {
         if ($ManufacturerID <= 0) {
-            throw new Exception("Invalid ManufacturerID: " . $ManufacturerID);
+            throw new Exception("Invalid ManufacturerID: $ManufacturerID");
         }
 
         $conn = get_db_connection();
+        if (!$conn) {
+            throw new Exception("Database connection failed.");
+        }
 
         $stmt = $conn->prepare("DELETE FROM manufacturer WHERE ManufacturerID = ?");
         if (!$stmt) {
@@ -99,7 +115,7 @@ function deleteManufacturer($ManufacturerID) {
         $stmt->bind_param("i", $ManufacturerID);
 
         if (!$stmt->execute()) {
-            throw new Exception("Failed to execute delete query: " . $stmt->error);
+            throw new Exception("Failed to execute delete query for ManufacturerID $ManufacturerID: " . $stmt->error);
         }
 
         $stmt->close();
