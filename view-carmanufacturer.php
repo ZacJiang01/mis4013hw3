@@ -25,7 +25,7 @@
             <label for="ManufacturerName" class="form-label">Manufacturer Name</label>
             <input type="text" class="form-control" id="ManufacturerName" name="ManufacturerName" required>
           </div>
-          <input type="hidden" name="actionType" value="AddManufacturer">
+          <input type="hidden" name="actionType" value="insertManufacturer">
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
       </div>
