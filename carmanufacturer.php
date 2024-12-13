@@ -5,13 +5,9 @@ require_once("selectmanufacturer.php");
 $pageTitle = "Manufacturers";
 include "view-header.php";
 
-// Fetch and display manufacturers
-try {
-    $manufacturer = selectManufacturer();
-    include "view-carmanufacturer.php";
-} catch (Exception $e) {
-    echo "<p class='alert alert-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
-}
+$Manufacturers = selectManufacturer();
+include "view-carmanufacturer.php";
+
 
 
 // Handle POST requests
