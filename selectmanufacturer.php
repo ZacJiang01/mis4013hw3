@@ -5,7 +5,6 @@ function selectManufacturer() {
     try {
         $conn = get_db_connection();
 
-        // Query to fetch manufacturer details
         $query = "
             SELECT ManufacturerID, ManufacturerName
             FROM Manufacturer
@@ -26,15 +25,20 @@ function selectManufacturer() {
         throw $e;
     }
 }
+
 function insertManufacturer($ManufacturerName) {
     try {
+        if (empty($ManufacturerName)) {
+            throw new Exception("Manufacturer name cannot be empty.");
+        }
+
         $conn = get_db_connection();
 
         $stmt = $conn->prepare("
             INSERT INTO manufacturer (ManufacturerName)
             VALUES (?)
         ");
-        $stmt->bind_param("s", $Manufacturer);
+        $stmt->bind_param("s", $ManufacturerName);
 
         $success = $stmt->execute();
         $stmt->close();
@@ -50,16 +54,20 @@ function insertManufacturer($ManufacturerName) {
     }
 }
 
-function updateManufacturer($ManufacturerName) {
+function updateManufacturer($ManufacturerID, $ManufacturerName) {
     try {
+        if (empty($ManufacturerName) || $ManufacturerID <= 0) {
+            throw new Exception("Invalid input data.");
+        }
+
         $conn = get_db_connection();
 
         $stmt = $conn->prepare("
             UPDATE Manufacturer
             SET ManufacturerName = ?
-            WHERE manufacturerID = ?
+            WHERE ManufacturerID = ?
         ");
-        $stmt->bind_param("s", $ManufacturerName);
+        $stmt->bind_param("si", $ManufacturerName, $ManufacturerID);
 
         $success = $stmt->execute();
         $stmt->close();
@@ -75,7 +83,7 @@ function updateManufacturer($ManufacturerName) {
     }
 }
 
-function deleteCar($ManufacturerID) {
+function deleteManufacturer($ManufacturerID) {
     try {
         if ($ManufacturerID <= 0) {
             throw new Exception("Invalid ManufacturerID: " . $ManufacturerID);
