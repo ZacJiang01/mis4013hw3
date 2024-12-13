@@ -5,6 +5,15 @@ require_once("selectmanufacturer.php");
 $pageTitle = "Manufacturers";
 include "view-header.php";
 
+// Fetch and display manufacturers
+try {
+    $manufacturer = selectManufacturer();
+    include "view-carmanufacturer.php";
+} catch (Exception $e) {
+    echo "<p class='alert alert-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
+}
+
+
 // Handle POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
     switch ($_POST['actionType']) {
@@ -51,13 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
     }
 }
 
-// Fetch and display manufacturers
-try {
-    $manufacturer = selectManufacturer();
-    include "view-carmanufacturer.php";
-} catch (Exception $e) {
-    echo "<p class='alert alert-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
-}
 
 include "view-footer.php";
 ?>
