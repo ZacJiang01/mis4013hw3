@@ -1,14 +1,12 @@
-<?php 
+<?php
 require_once("util-db.php");
 require_once("selectmanufacturer.php");
 
 $pageTitle = "Manufacturers";
 include "view-header.php";
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
-    require_once("util-db.php");
-    require_once("selectmanufacturer.php");
 
+// Handle POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
     switch ($_POST['actionType']) {
         case "Add":
             // Validate and sanitize inputs
@@ -52,16 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actionType'])) {
             break;
     }
 }
-?>
 
+// Fetch and display manufacturers
 try {
-    // Fetch manufacturers
-    $Manufacturers = selectManufacturer();
-
-    // Include the view to display the data
+    $manufacturers = selectManufacturer();
     include "view-carmanufacturer.php";
 } catch (Exception $e) {
-    echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
+    echo "<p class='alert alert-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
 }
 
 include "view-footer.php";
